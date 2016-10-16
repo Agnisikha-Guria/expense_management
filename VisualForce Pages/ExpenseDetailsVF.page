@@ -1,0 +1,47 @@
+<!-- This VisualForce Page has been designed to show the total expenditure of a particular event as well as the the break up of the contribution made
+by other members towards this event in a tabular format in a PDF format. -->
+<apex:page standardcontroller="Expence__c" renderAs="PDF" extensions="ExpenseExtensions" action="{!getMembers}">
+   <html>
+      <h1>Expense Details:</h1>
+      <br/>
+        <head/>
+        <body>
+        <!-- Table structuring of the total expenditure expected and date for the event -->
+            <table border="1"  width="600px" Class="center" >
+              <tr>
+                 <td>TOTAL AMOUNT</td>
+                 <!-- Data being populated for the above said columns from "Expence__c" Object  -->
+                 <td>{!Expence__c.Amount__c}</td>
+              </tr>
+              <tr>
+                    <td>DATE</td>
+                    <!-- Data being populated for the above said columns from "Expense__c" Object  -->
+                    <td>{!Expence__c.Date__c} </td>
+              </tr>
+              <tr>
+                    <td>EVENT NAME</td>
+                    <!-- Data being populated for the above said columns from "Expense__c" Object -->
+                    <td>{!Expence__c.Event__c}</td>
+              </tr>           
+            </table>
+            <br/>
+            <h5> EXPENSE DETAILS</h5>
+            <!-- Table structuring of the total contribution from the members towards this event -->
+            <table border="1"  width="600px" Class="center" >
+              <tr>
+                 <td>NAME</td>
+                 <td>CONTRIBUTION</td>
+              </tr>
+               <!-- Fetching data in a List from Extension Apex Class "ExpenseExtensions" and showing the value in a loop. -->   
+               <apex:repeat value="{!list1}" var="i">
+                <tr>
+                     <td>{!i.Member__r.First_Name__c}</td>
+                     <td>{!i.Contribution_Amount__c}</td>
+                </tr>
+            </apex:repeat>
+            </table>
+        </body>
+    </html>
+<!-- HTML Ends --> 
+</apex:page>
+<!--VisualForce page Ends-->

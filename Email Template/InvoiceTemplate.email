@@ -1,0 +1,30 @@
+<!-- This VisualForce Page(Email Template) is been designed to send a mail with an attachment of the contribution receipt whenever a contribution is
+towards an event. -->
+
+<messaging:emailTemplate subject="Invoice mail" recipientType="User" relatedToType="ExpenseMember__c">
+
+<!-- Attachment File Description and format been wriiten within this tag, i.e., how the attachment will look like and what data will be shown here. -->
+<messaging:attachment renderAs="PDF" filename="Invoice.pdf">
+    <html>
+        <head/>
+        <body>
+        <h1 style="text-align:center">Receipt of Contribution</h1>
+        Hi {!relatedTo.Member__r.First_Name__c} {!relatedTo.Member__r.Last_Name__c}<br/>
+        
+           Thanks for the Contribution on the event named as {!relatedTo.Expence__r.Event__c}<br/>
+           Event Date: {!relatedTo.Expence__r.Date__c}<br/>
+           Your contributed amount: {!relatedTo.Contribution_Amount__c}<br/>
+            
+        </body>
+    </html>
+</messaging:attachment>
+<!--Attachment Tag Ends-->
+
+<!--Mail Body STrats-->
+<messaging:plainTextEmailBody >
+Thank you for participating in the event. Please find Attached your acknowledgment copy.
+</messaging:plainTextEmailBody>
+<!--Mail Body Ends-->
+
+</messaging:emailTemplate>
+<!--Email Template Visual Force Page Ends -->
